@@ -1,0 +1,25 @@
+UVOD
+Do tohoto deníku budu zapisovat své myšlenky a postupy při plnění úkolu. Primární záměr tohoto deníku je ukázat způsob, jak nad danou problematikou přemýšlím a zároveň slouží jako důkaz, že nepoužívám umělou inteligenci, která by mi se správným promptem dokázala celý úkol vygenerovat. 
+
+Tento deník bude nejspíš rozdělen na 3 části. První částí je tento "úvod", druhá část bude analýza zadání a definice funkcionalit, které bych chtěl zakomponovat. Třetí částí bude checklist, který vytvořím ze zadání a další část budou moje poznámky, které budou odděleny prázdným řádkem a vždy budou začínat časem, ve který jsem začal poznámku psát (např 10:24 11.03.2025).
+
+ANALYZA
+Po analýze zadání zjišťuji, že jde o celkem jednoduchou appku, takže bych se pustil i do dobrovolných úkolů. Jediné, s čím jsem ještě neměl zkušenost je stránkování, ale s tím by neměl být vůbec problém. Teď provedu dekompozici zadání na dílčí kroky, které budu postupně splňovat a jejich spojením dosáhnu finálního řešení. I když zadání nezmiňuje zobrazení údajů účtu, rád bych je přidal pro lepší user experience. Zároveň bych chtěl, aby bylo možné vyhledat uživatelů více a ukládat data třeba do localStorage. Tím pádem by bylo možné si údaje zobrazit i při výpadku interentu. Data by se synchronizovala při navázání spojení, a nebo při refreshnutí stránky. Ale když nad tím tak přemýšlím, tak v případě nestabilního připojení by mohlo docházet k hodně requestům, i se tyto údaje nebudou moc měnit. To by ale nemuselo ovlivnit response time, pokud by github cachoval responses. Ale v tom případě zase nemusí být data vždy aktuální.... Nejspíše to vypadá, že ke cachování dochází, protože první request trval 417.65 ms a následný pouze 37.46 ms. Také by to chtělo dát uživateli vhodně vědět, že bylo připojení ztraceno a tím pádem nemusí pracovat s aktuálními daty. Stejně bych mu dal vědět při navázání spojení a o refreshi. (13:25 11.03.2025) Teď jsem se kamarádovi svěřil s nápady, které bych implementoval nad rámec zadání, jako např. multijazyčnost, nasazení do dockeru, 
+.... tak jsme došli k závěru, že by to mohlo působit i negativně. Takže se budu držet zadání a nad rámec přidám pouze tu funkcionalitu, kterou považuji za relevantní a nezbytnou pro kladnou user experience. Každopádně nejdřív nejspíše začnu funkcionalitou, kterou následně napojím na UI. Jelikož se jedná pouze o frontend, není potřeba práce s databází, tak nebudu vytvářet žádné diagramy jako např. class diagram a erd. UI bude taky jednoduché, takže přeskočím vytváření wireframů, moodboardu, komponent a finálního návrhu designu. Určitě ani nesmí chybět testy pro ověření správné funkčnosti. Někdy se praktikuje vývojová metoda, že se začne s testy a funkcionalita se píše tak, aby testy začly procházet. Já na tuto metodu nejsem zvyklý, takže zůstanu u klasického psaní funkcionality a testy přidám až v průběhu.
+
+CHECKLIST
+- přečtení response z https://api.github.com/users/jirisuster/repos
+- zobrazení základních informací o uživateli
+- zobrazení seznamu repozitářů
+- možnost vyhledat uživatele z textboxu
+- ošetření uživatelského vstupu
+- zpracování chyb
+- stránkování
+- ukládání do localStorage
+- dát uživateli vědět, když mu vypadne/naskočí připojení k internetu
+- refetch při načtení stránky a při navázání připojení k internetu
+- ošetřit, aby nedošlo k případné ztrátě dat která máme uložena v localStorage, když někdo smaže repozitář a nebo účet. Dát uživateli najevo, že tato data již nejsou dostupná a zobrazit mu jeho lokální verzi.
+- design
+- testy
+
+IMPLEMENTACE
