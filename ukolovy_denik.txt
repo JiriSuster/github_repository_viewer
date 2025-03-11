@@ -23,3 +23,10 @@ CHECKLIST
 - testy
 
 IMPLEMENTACE
+13:57 11.03.2025 začnu tím, že si vytvořím nový Vue.js projekt a připravím pinia store, který bude sloužit k práci s API. Funkčnost ověřím vypsáním response.
+
+14:03 11.03.2025 původně jsem zamýšlel přidat Router, ale jelikož jde o takhle malou appku, tak to asi nebude třeba. Ale můžu udělat 2 taby, kdy první bude sloužit pro vyhledání informací uživatele a druhý bude "historie hledání".
+
+14:17 11.03.2025 při setupu projektu jsem zvolil typescript, router, pinia, ESLint a prettier. Projekt vytvořen.
+
+
