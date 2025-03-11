@@ -29,9 +29,16 @@ IMPLEMENTACE
 
 14:17 11.03.2025 při setupu projektu jsem zvolil typescript, router, pinia, ESLint a prettier. Projekt vytvořen.
 
-15:54 11.03.2025 při vytváření pinia store jsem si nemohl vzpomenout na správnou syntaxi, tak jsem se inspiroval kódem ze svého projektu SquirrelTrade
+15:54 11.03.2025 při vytváření pinia store jsem si nemohl vzpomenout na správnou syntaxi, tak jsem se inspiroval kódem ze svého projektu SquirrelTrade.
 
-16:10 11.03.2025 vytvořen store pro github api, vypsani response na root path /.
+16:10 11.03.2025 vytvořen store pro github api, vypsani response na root path /. Proveden commit
 
+16:22 11.03.2025 přemýšlím, jak vzít info o uživateli (jméno a obrázek) z této response. U každého repa je uvedený owner. Každopádně kdyby byl owner jiný, tak nejspíš nebude toto repo zařazeno do této response, protože se díváme na repa daného uživatele. Při kontrole jsem zjistil, že i u repa které jsem forknul jsem uvedený jako owner, takže tam není napsán původní owner, ale jsem tam správně uveden já. Zkusil jsem to s vice uzivateli s forky a funguje to stejne, takze se budu spoléhat na tyto udaje.
 
+17:22 11.03.2025 nyní jsem řešil problém při mapování response na můj interface. Chybová hláška: "is not assignable to type [Repository]". Měl jsem problém v syntaxi, v User.ts mělo být Repository[] a já tam měl napsáno [Repository]. Pravděpodobně jsem si spletl syntaxi s kotlinem :D. 
+zdroj: https://stackoverflow.com/questions/68316394/typescript-tuple-error-target-requires-3-elements-but-source-may-have-fewer
 
+17:40 11.03.2025 při použití v-for jsem narazil na ESlint chybu lements in iteration expect to have 'v-bind:key', kterou jsem vyřešil přidáním :key
+zdroj: https://stackoverflow.com/questions/47608379/vue-language-server-elements-in-iteration-expect-to-have-v-bindkey-directiv
+
+17:44 11.03.2025 commit
