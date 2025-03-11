@@ -8,7 +8,7 @@ Po analýze zadání zjišťuji, že jde o celkem jednoduchou appku, takže bych
 .... tak jsme došli k závěru, že by to mohlo působit i negativně. Takže se budu držet zadání a nad rámec přidám pouze tu funkcionalitu, kterou považuji za relevantní a nezbytnou pro kladnou user experience. Každopádně nejdřív nejspíše začnu funkcionalitou, kterou následně napojím na UI. Jelikož se jedná pouze o frontend, není potřeba práce s databází, tak nebudu vytvářet žádné diagramy jako např. class diagram a erd. UI bude taky jednoduché, takže přeskočím vytváření wireframů, moodboardu, komponent a finálního návrhu designu. Určitě ani nesmí chybět testy pro ověření správné funkčnosti. Někdy se praktikuje vývojová metoda, že se začne s testy a funkcionalita se píše tak, aby testy začly procházet. Já na tuto metodu nejsem zvyklý, takže zůstanu u klasického psaní funkcionality a testy přidám až v průběhu.
 
 CHECKLIST
-- přečtení response z https://api.github.com/users/jirisuster/repos
+☺ přečtení response z https://api.github.com/users/jirisuster/repos
 - zobrazení základních informací o uživateli
 - zobrazení seznamu repozitářů
 - možnost vyhledat uživatele z textboxu
@@ -28,5 +28,10 @@ IMPLEMENTACE
 14:03 11.03.2025 původně jsem zamýšlel přidat Router, ale jelikož jde o takhle malou appku, tak to asi nebude třeba. Ale můžu udělat 2 taby, kdy první bude sloužit pro vyhledání informací uživatele a druhý bude "historie hledání".
 
 14:17 11.03.2025 při setupu projektu jsem zvolil typescript, router, pinia, ESLint a prettier. Projekt vytvořen.
+
+15:54 11.03.2025 při vytváření pinia store jsem si nemohl vzpomenout na správnou syntaxi, tak jsem se inspiroval kódem ze svého projektu SquirrelTrade
+
+16:10 11.03.2025 vytvořen store pro github api, vypsani response na root path /.
+
 
 
