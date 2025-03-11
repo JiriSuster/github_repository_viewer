@@ -9,9 +9,9 @@ Po analýze zadání zjišťuji, že jde o celkem jednoduchou appku, takže bych
 
 CHECKLIST
 ☺ přečtení response z https://api.github.com/users/jirisuster/repos
-- zobrazení základních informací o uživateli
-- zobrazení seznamu repozitářů
-- možnost vyhledat uživatele z textboxu
+☺ zobrazení základních informací o uživateli
+☺ zobrazení seznamu repozitářů
+☺ možnost vyhledat uživatele z textboxu
 - ošetření uživatelského vstupu
 - zpracování chyb
 - stránkování
@@ -42,3 +42,9 @@ zdroj: https://stackoverflow.com/questions/68316394/typescript-tuple-error-targe
 zdroj: https://stackoverflow.com/questions/47608379/vue-language-server-elements-in-iteration-expect-to-have-v-bindkey-directiv
 
 17:44 11.03.2025 commit
+
+23:42 11.03.2025 nyni, pridam textbox a button pro vyhledani uzivatele. Pouziji vuetify prvky a grid system. Az bude design pro PC hotov, pouziji cols pro mobilni responzivitu.
+
+0:34 12.03.2025 chvili mi trvalo zjitit, jak udelat, aby v-text-field nevyplnoval celou height. Pak jsem si uvedomil, ze jsem vubec nepouzil v-col...
+
+0:37 12.03.2025 přidána možnost přidat vyhledat uživatele pomocí textboxu. proveden commit
