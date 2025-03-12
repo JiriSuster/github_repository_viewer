@@ -5,6 +5,7 @@ import type { User } from '@/types/user.ts'
 import { NoRepositories } from '@/errors/NoRepositories.ts'
 import { AxiosError } from 'axios'
 import { usernameRules } from '@/rules/usernameRules.ts'
+import Paginate from '@/components/paginate.vue'
 
 const user = ref<User>()
 const store = useGithubStore()
@@ -17,6 +18,19 @@ const isSearchDisabled = computed(() => {
   return usernameRules.some((rule) => rule(searchText.value) != true)
 })
 
+const currentPage = ref(1)
+const displayPerPage = 4
+const itemCount = ref(0)
+
+const displayedRepositories = computed(() => {
+  return (
+    user.value?.repositories.slice(
+      (currentPage.value - 1) * displayPerPage,
+      currentPage.value * displayPerPage,
+    ) || []
+  )
+})
+
 store.fetchUser('jirisuster').then((userData) => {
   user.value = userData
 })
@@ -24,6 +38,7 @@ store.fetchUser('jirisuster').then((userData) => {
 async function fetchUser() {
   try {
     user.value = await store.fetchUser(searchText.value)
+    itemCount.value = user.value.repositories.length
   } catch (err) {
     if (err instanceof NoRepositories) {
       snackBarText.value = err.message
@@ -53,7 +68,7 @@ async function fetchUser() {
         <p>{{ user.username }}</p>
         <img :src="user.image_url" alt="user image" />
         <p>{{ user.url }}</p>
-        <v-dialog v-for="repo in user.repositories" :key="repo.name">
+        <v-dialog v-for="repo in displayedRepositories" :key="repo.name">
           <!-- https://vuetifyjs.com/en/components/dialogs -->
           <template v-slot:activator="{ props: activatorProps }">
             <v-btn
@@ -83,6 +98,12 @@ async function fetchUser() {
           </template>
         </v-dialog>
       </div>
+      <paginate
+        v-model="currentPage"
+        :max-pages-shown="5"
+        :items-per-page="displayPerPage"
+        :total-items="itemCount"
+      />
       <v-snackbar v-model="showSnackBar" :timeout="2500">{{ snackBarText }}</v-snackbar>
     </v-col>
   </v-container>

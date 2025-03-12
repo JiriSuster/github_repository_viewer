@@ -24,6 +24,9 @@ export const useGithubStore = defineStore('github', () => {
         forks: repo.forks,
       })),
     }
+    if (!user) {
+      throw new Error('no user created')
+    }
     return user
   }
   return { fetchUser }

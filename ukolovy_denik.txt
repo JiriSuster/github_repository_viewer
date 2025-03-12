@@ -14,7 +14,7 @@ CHECKLIST
 ☺ možnost vyhledat uživatele z textboxu
 ☺ ošetření uživatelského vstupu
 ☺ zpracování chyb
-- stránkování
+☺ stránkování
 - ukládání do localStorage
 - dát uživateli vědět, když mu vypadne/naskočí připojení k internetu
 - refetch při načtení stránky a při navázání připojení k internetu
@@ -69,3 +69,9 @@ zdroj: https://vuetifyjs.com/en/components/dialogs/
 2:33 12.03.2025 Error handling je více méně hotov, akorát jsem si všimnul, že nevaliduji u uživatele, jestli nezadal jiné znaky, než povolené. A zároveň na tlačítko jde kliknout i když kritéria nejsou splněna.
 
 3:36 12.03.2025 chyby a validace vstupu by měly být plně ošetřeny. Proveden commit.
+
+3:56 12.03.2025 na stránkování použiji npm package vue-awesome-paginate, která vypadá celkem slušně a je nejméně zastaralá. Dalším bonusem je, že nemá další dependencies a je lightweight.
+zdroj: https://www.npmjs.com/package/vue-awesome-paginate
+
+4:52 12.03.2025 plně funkční stránkování. Proveden commit
+
