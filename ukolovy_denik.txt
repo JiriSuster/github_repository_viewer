@@ -13,7 +13,7 @@ CHECKLIST
 ☺ zobrazení seznamu repozitářů
 ☺ možnost vyhledat uživatele z textboxu
 ☺ ošetření uživatelského vstupu
-- zpracování chyb
+☺ zpracování chyb
 - stránkování
 - ukládání do localStorage
 - dát uživateli vědět, když mu vypadne/naskočí připojení k internetu
@@ -61,3 +61,11 @@ Přesně si nevzpomínám, jak tyto pravidla implementovat, ale pro inspiraci se
 
 1:30 12.03.2025 vytvořeno základní modální okno pomocí v-dialog. Proveden commit
 zdroj: https://vuetifyjs.com/en/components/dialogs/
+
+2:15 12.03.2025 Nemohl jsem zjistit, proč se neskočí do správné větve při kontrole instance custom erroru. Nakonec jsem zjistil, že místo .then() musím použít async.
+
+2:20 12.03.2025 Během testování error handlingu mě github rate limitnul :D (API rate limit exceeded for XX.XXX.XXX.XXX. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)). Nadešel čas nahodit VPN. 
+
+2:33 12.03.2025 Error handling je více méně hotov, akorát jsem si všimnul, že nevaliduji u uživatele, jestli nezadal jiné znaky, než povolené. A zároveň na tlačítko jde kliknout i když kritéria nejsou splněna.
+
+3:36 12.03.2025 chyby a validace vstupu by měly být plně ošetřeny. Proveden commit.
