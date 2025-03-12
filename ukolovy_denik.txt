@@ -12,7 +12,7 @@ CHECKLIST
 ☺ zobrazení základních informací o uživateli
 ☺ zobrazení seznamu repozitářů
 ☺ možnost vyhledat uživatele z textboxu
-- ošetření uživatelského vstupu
+☺ ošetření uživatelského vstupu
 - zpracování chyb
 - stránkování
 - ukládání do localStorage
@@ -48,3 +48,15 @@ zdroj: https://stackoverflow.com/questions/47608379/vue-language-server-elements
 0:34 12.03.2025 chvili mi trvalo zjitit, jak udelat, aby v-text-field nevyplnoval celou height. Pak jsem si uvedomil, ze jsem vubec nepouzil v-col...
 
 0:37 12.03.2025 přidána možnost přidat vyhledat uživatele pomocí textboxu. proveden commit
+
+0:44 12.03.2025 teď bych chtěl ošetřit uživatelský vstup. Dát uživateli co nejmenší možnost odeslat nesprávná data a dát mu možnost data upravit před odesláním. Zranitelnosti jako XSS jsou již automaticky řešeny samotným frameworkem, takže nějaké escapování uživatelského vstupu nemusím řešit.
+Github usernames mají určitá pravidla:
+Délka 1-39 znaků
+povoleny pouze znaky a-z, A-Z, 0-9, -
+username může pomlčku obsahovat pouze uvnitř a pouze jednou, ne víckrát po sobě.
+Zdroj: https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/iam-configuration-reference/username-considerations-for-external-authentication
+Přesně si nevzpomínám, jak tyto pravidla implementovat, ale pro inspiraci se podívám na svůj projekt JobConnect, kde jsem stejný problém již řešil.
+
+1:07 12.03.2025 uživatelský vstup jsem ošetřil, teď bych zkusil vyvolat modální okno po kliknutí na repo. Proveden commit
+
+ 

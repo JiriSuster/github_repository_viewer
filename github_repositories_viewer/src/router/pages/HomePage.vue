@@ -12,12 +12,21 @@ function fetchUser() {
     user.value = userData
   })
 }
+
+const usernameRules = [
+  (v: string) => !!v || 'username is required',
+  (v: string) => (v.length >= 1 && v.length <= 39) || 'username must be between 1-39 characters',
+  (v: string) =>
+    (v.charAt(0) != '-' && v.charAt(v.length - 1) != '-') ||
+    "username must not start or end with '-'",
+  (v: string) => !v.includes('--') || "username must not include multiple '-' in a row",
+]
 </script>
 
 <template>
   <v-col>
     <v-row>
-      <v-text-field v-model="searchText" label="username" />
+      <v-text-field v-model="searchText" label="username" :rules="usernameRules" />
       <v-btn @click="fetchUser()">Search</v-btn>
     </v-row>
 
