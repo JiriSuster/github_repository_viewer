@@ -59,4 +59,5 @@ Přesně si nevzpomínám, jak tyto pravidla implementovat, ale pro inspiraci se
 
 1:07 12.03.2025 uživatelský vstup jsem ošetřil, teď bych zkusil vyvolat modální okno po kliknutí na repo. Proveden commit
 
- 
+1:30 12.03.2025 vytvořeno základní modální okno pomocí v-dialog. Proveden commit
+zdroj: https://vuetifyjs.com/en/components/dialogs/

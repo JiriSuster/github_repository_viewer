@@ -7,6 +7,10 @@ const user = ref<User>()
 const store = useGithubStore()
 const searchText = ref('')
 
+store.fetchUser('jirisuster').then((userData) => {
+  user.value = userData
+})
+
 function fetchUser() {
   store.fetchUser(searchText.value).then((userData) => {
     user.value = userData
@@ -34,10 +38,34 @@ const usernameRules = [
       <p>{{ user.username }}</p>
       <img :src="user.image_url" alt="user image" />
       <p>{{ user.url }}</p>
+      <v-dialog v-for="repo in user.repositories" :key="repo.name"> <!-- https://vuetifyjs.com/en/components/dialogs -->
+        <template v-slot:activator="{ props: activatorProps }">
+          <v-btn
+            v-bind="activatorProps"
+            color="surface-variant"
+            :text="repo.name"
+            variant="flat"
+          ></v-btn>
+        </template>
 
-      <p v-for="repo in user.repositories" :key="repo.name">
-        {{ repo.name }}
-      </p>
+        <template v-slot:default="{ isActive }">
+          <v-card :title="repo.name">
+            <v-card-text>
+              <v-col>
+                <p>{{ repo.description ? repo.description : 'No description :(' }}</p>
+                <p>{{ repo.forks }} forks</p>
+                <a :href="repo.url">link</a>
+              </v-col>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+              <v-btn text="Close" @click="isActive.value = false"></v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
     </div>
   </v-col>
 </template>
