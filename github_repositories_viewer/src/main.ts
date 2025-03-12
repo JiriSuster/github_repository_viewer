@@ -11,7 +11,17 @@ import VueAwesomePaginate from 'vue-awesome-paginate'
 import 'vue-awesome-paginate/dist/style.css'
 const vuetify = createVuetify({
   theme: {
-    defaultTheme: 'light',
+    defaultTheme: 'myTheme',
+    themes: {
+      myTheme: {
+        dark: true,
+        colors: {
+          humanit_main: '#37bfb5',
+          humanit_darker: '#089A8F',
+          humanit_lighter: '#B2F4EF',
+        },
+      },
+    },
   },
 })
 const app = createApp(App)

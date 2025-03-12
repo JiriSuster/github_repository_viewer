@@ -15,11 +15,12 @@ CHECKLIST
 ☺ ošetření uživatelského vstupu
 ☺ zpracování chyb
 ☺ stránkování
+☺ načítací animace
 - ukládání do localStorage
 - dát uživateli vědět, když mu vypadne/naskočí připojení k internetu
 - refetch při načtení stránky a při navázání připojení k internetu
 - ošetřit, aby nedošlo k případné ztrátě dat která máme uložena v localStorage, když někdo smaže repozitář a nebo účet. Dát uživateli najevo, že tato data již nejsou dostupná a zobrazit mu jeho lokální verzi.
-- design
++- design
 - testy
 
 IMPLEMENTACE
@@ -75,3 +76,17 @@ zdroj: https://www.npmjs.com/package/vue-awesome-paginate
 
 4:52 12.03.2025 plně funkční stránkování. Proveden commit
 
+9:21 12.03.2025 vytvořil jsem komponentu pro dialog a jednotlivé repozitáře jsou reprezentovány pomocí <v-card>
+
+9:51 12.03.2025 přidán redirect na profil po kliknutí na obrázek, pointer kurzor pro naznačení interaktivity
+
+17:24 12.03.2025 došlo k větším UI/UX změnám a přidání responzivity pro mobilní zařízení. I cards s repozitáři jsem se pokusil nastavit velikostně tak, aby byly vždy přibližně stejně velké, nehledě na kontentu. Taky jsem použil dark theme a jako sekundární barvu jsem použil stejnou, jako používá HumanIT na své webovce (aby měl Tomáš radost :D). Základní zadání bude splněno hned, jak přidám animaci načítání.
+zdroje: 
+https://stackoverflow.com/questions/62554476/cant-get-v-img-to-center-inside-v-flex
+https://vuetifyjs.com/en/features/theme/#custom-theme-colors
+https://vuejs.org/guide/essentials/event-handling
+
+17:46 12.03.2025 pro animaci použiju packag "Vue Loading Overlay Component". Vypadá dost dobře, package je udržovaná a má dobrou dokumentaci.
+zdroj: https://www.npmjs.com/package/vue-loading-overlay
+
+18:15 12.03.2025 tak animace je úspěšně implementována. Sice když je response po nějakou dobu cachována, tak jen rychle problikne, ale to už nebudu řešit. Stav isLoading se nastavuje na true při začátku requestu a na false na jeho konci. Animace se ukončí i když dojde k catchnutí exception. Proveden commit

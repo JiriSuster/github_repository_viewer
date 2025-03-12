@@ -24,6 +24,7 @@ const onClickHandler = (page: number) => {
     :max-pages-shown="maxPagesShown"
     :model-value="modelValue"
     @update:modelValue="onClickHandler"
+    :show-breakpoint-buttons="false"
   />
 </template>
 <style>
@@ -50,11 +51,13 @@ const onClickHandler = (page: number) => {
 }
 
 .paginate-buttons:hover {
-  background-color: #d8d8d8;
+  background-color: rgba(
+    var(--v-theme-humanit_lighter)
+  ); /* it says theres error with resolving, but it works anyway xd */
 }
 
 .active-page {
-  background-color: #3498db;
+  background-color: rgba(var(--v-theme-humanit_main));
 
   border: 1px solid #3498db;
 
@@ -62,6 +65,6 @@ const onClickHandler = (page: number) => {
 }
 
 .active-page:hover {
-  background-color: #2988c8;
+  background-color: rgba(var(--v-theme-humanit_darker));
 }
 </style>
