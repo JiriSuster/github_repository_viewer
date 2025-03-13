@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { User } from '@/types/user.ts'
 import { NoRepositories } from '@/errors/NoRepositories.ts'
 import { AxiosError } from 'axios'
@@ -51,6 +51,7 @@ async function fetchUser() {
 <template>
   <v-container max-width="60em">
     <Loading :active="isLoading" />
+    <p class="text-h3 text-center">Github Repo Viewer</p>
     <v-row class="align-center d-flex">
       <v-text-field
         class="pt-5"

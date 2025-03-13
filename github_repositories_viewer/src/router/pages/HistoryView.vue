@@ -38,12 +38,27 @@ watchEffect(async () => {
 function selectUser(user: User) {
   selectedUser.value = user
 }
+
+function hideUserView() {
+  selectedUser.value = undefined
+}
+
+function removeUser(user: User) {
+  userStore.removeUser(user)
+  users.value = userStore.getAllUsers()
+  hideUserView()
+}
 </script>
 
 <template>
   <v-container max-width="60em">
     <v-col v-if="selectedUser">
-      <UserView :user="selectedUser" :show-arrow-back="true" @return="selectedUser = undefined" />
+      <UserView
+        :user="selectedUser"
+        :show-arrow-back="true"
+        @return="hideUserView()"
+        @delete_user="removeUser(selectedUser)"
+      />
     </v-col>
     <v-col v-else>
       <v-row>
@@ -70,12 +85,14 @@ function selectUser(user: User) {
       <v-spacer />
       <v-row class="justify-center">
         <Paginate
+          v-if="users.length > 0"
           class="pt-4"
           v-model="currentPage"
           :max-pages-shown="5"
           :items-per-page="displayPerPage"
           :total-items="itemCount"
         />
+        <p v-else class="text-h3">No history yet</p>
       </v-row>
     </v-col>
   </v-container>

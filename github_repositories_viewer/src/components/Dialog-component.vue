@@ -27,7 +27,11 @@ function redirectTo(url: string) {
         min-width="25em"
         v-bind="activatorProps"
         :title="name"
-        :text="description ? description : 'No description :('"
+        :text="
+          description && description.length > 250
+            ? `${description.slice(0, 250)}...`
+            : description || 'No description :('
+        "
       />
     </template>
 

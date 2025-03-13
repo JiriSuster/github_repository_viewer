@@ -10,7 +10,7 @@ const props = defineProps({
   },
   showArrowBack: { type: Boolean, default: false },
 })
-defineEmits(['return'])
+defineEmits(['return', 'delete_user'])
 
 onMounted(() => {
   currentPage.value = 1
@@ -36,9 +36,15 @@ const displayedRepositories = computed(() => {
 
 <template>
   <v-container>
-    <v-btn v-if="showArrowBack" @click="$emit('return')">
-      <p>back</p>
-    </v-btn>
+    <v-row v-if="showArrowBack">
+      <v-btn @click="$emit('return')">
+        <p>back</p>
+      </v-btn>
+      <v-spacer />
+      <v-btn @click="$emit('delete_user')">
+        <p class="text-red">remove</p>
+      </v-btn>
+    </v-row>
     <v-col v-if="user">
       <p class="text-h3 text-center" data-cy="username">{{ user.username }}</p>
       <v-img
@@ -46,7 +52,7 @@ const displayedRepositories = computed(() => {
         alt="user image"
         @click="redirectTo(user.url)"
         class="cursor-pointer mx-auto pb-10"
-        width="25em"
+        width="15em"
       />
       <v-row class="align-center">
         <v-col

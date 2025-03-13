@@ -21,7 +21,7 @@ X dát uživateli vědět, když mu vypadne/naskočí připojení k internetu
 +- refetch při načtení stránky a při navázání připojení k internetu
 X ošetřit, aby nedošlo k případné ztrátě dat která máme uložena v localStorage, když někdo smaže repozitář a nebo účet. Dát uživateli najevo, že tato data již nejsou dostupná a zobrazit mu jeho lokální verzi.
 ☺ design
-- testy
+☺ testy
 
 IMPLEMENTACE
 13:57 11.03.2025 začnu tím, že si vytvořím nový Vue.js projekt a připravím pinia store, který bude sloužit k práci s API. Funkčnost ověřím vypsáním response.
@@ -116,8 +116,9 @@ https://stackoverflow.com/questions/58241604/how-do-you-type-hint-vue-props-with
 
 15:52 13.03.2025 Nejspíš vytvořím jednoduchý E2E test pro ověření zobrazení uživatele a uložení do historie. Použiju Cypress, protože s ním mám už pár zkušeností.
 
+16:31 13.03.2025 jednoduchy test je hotovy. Projde celou appku od zacatku az do konce. Sice nejsou namockovana data, ale aspoň tím testujeme i api ☺. Commit
 
 
-
+18:12 13.03.2025 dokoncene finalni upravy. Přidáno odstraňování z v historii. Dále jsem dal aplikaci otestovat 2 lidem, a díky jejich feedbacku došlo k těmto změnám: zkrácen text repozitářů, lepší navbar, menší obrázek, favicon, html title. Toto bude nejspíš finální commit.
 
 

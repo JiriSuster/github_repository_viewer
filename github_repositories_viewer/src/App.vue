@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import NavigationComponent from '@/components/Navigation-component.vue'
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <nav>
-        <RouterLink to="/" data-cy="home_route">Home</RouterLink>
-        <RouterLink to="/history" data-cy="history_route">History</RouterLink>
-      </nav>
+      <NavigationComponent />
     </div>
   </header>
   <v-app>
