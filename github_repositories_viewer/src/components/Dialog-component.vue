@@ -47,6 +47,7 @@ function redirectTo(url: string) {
               class="text-humanit_main"
               text="Bring me there!"
               @click="redirectTo(url!)"
+              data-cy="redirect"
             ></v-btn>
           </v-card-actions>
         </v-card>

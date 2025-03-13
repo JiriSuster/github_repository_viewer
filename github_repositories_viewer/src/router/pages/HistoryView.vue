@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import type { User } from '@/types/user.ts'
 import { useUserStore } from '@/stores/UserStore.ts'
 import isOnline from 'is-online'
@@ -23,10 +23,16 @@ const displayedUsers = computed(() => {
   )
 })
 
-onMounted(() => {
+onMounted(async () => {
   users.value = userStore.getAllUsers()
   itemCount.value = users.value.length
   currentPage.value = 1
+  users.value = await userStore.refetchAllUsers()
+})
+const showPlaceholder = ref(false)
+
+watchEffect(async () => {
+  showPlaceholder.value = !(await isOnline())
 })
 
 function selectUser(user: User) {
@@ -43,20 +49,22 @@ function selectUser(user: User) {
       <v-row>
         <v-col class="pa-4" cols="6" v-for="user in displayedUsers" :key="user.username" md="3">
           <p class="text-center text-h5">{{ user.username }}</p>
+          <!-- It looks like the images are being cached, so no need for this functionality -->
           <v-img
-            v-if="isOnline"
+            v-if="true"
             :src="user.image_url"
             alt="user image"
             @click="selectUser(user)"
             class="cursor-pointer mx-auto"
             min-width="5em"
             width="100%"
+            data-cy="image"
           >
-            <template v-slot:error>
-              <v-img src="./placeholder.png" />
+            <template #error>
+              <v-img src="./placeholder.png" class="cursor-pointer" @click="selectUser(user)" />
             </template>
           </v-img>
-          <v-img v-else src="./placeholder.png" />
+          <v-img v-else src="./placeholder.png" class="cursor-pointer" @click="selectUser(user)" />
         </v-col>
       </v-row>
       <v-spacer />

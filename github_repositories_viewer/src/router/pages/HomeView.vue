@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import type { User } from '@/types/user.ts'
 import { NoRepositories } from '@/errors/NoRepositories.ts'
 import { AxiosError } from 'axios'
 import { usernameRules } from '@/rules/usernameRules.ts'
-import Paginate from '@/components/Paginate-component.vue'
-import DialogComponent from '@/components/Dialog-component.vue'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
 import { useUserStore } from '@/stores/UserStore.ts'
@@ -59,6 +57,7 @@ async function fetchUser() {
         v-model="searchText"
         label="username"
         :rules="usernameRules"
+        data-cy="search_txt"
         @keyup.enter="isSearchDisabled ? void 0 : fetchUser()"
       />
       <v-btn
@@ -67,6 +66,7 @@ async function fetchUser() {
         class="text-humanit_main"
         @click="fetchUser()"
         :disabled="isSearchDisabled"
+        data-cy="search_btn"
         >Search</v-btn
       >
     </v-row>

@@ -16,11 +16,11 @@ CHECKLIST
 ☺ zpracování chyb
 ☺ stránkování
 ☺ načítací animace
-- ukládání do localStorage
-- dát uživateli vědět, když mu vypadne/naskočí připojení k internetu
-- refetch při načtení stránky a při navázání připojení k internetu
-- ošetřit, aby nedošlo k případné ztrátě dat která máme uložena v localStorage, když někdo smaže repozitář a nebo účet. Dát uživateli najevo, že tato data již nejsou dostupná a zobrazit mu jeho lokální verzi.
-+- design
+☺ ukládání do localStorage
+X dát uživateli vědět, když mu vypadne/naskočí připojení k internetu
++- refetch při načtení stránky a při navázání připojení k internetu
+X ošetřit, aby nedošlo k případné ztrátě dat která máme uložena v localStorage, když někdo smaže repozitář a nebo účet. Dát uživateli najevo, že tato data již nejsou dostupná a zobrazit mu jeho lokální verzi.
+☺ design
 - testy
 
 IMPLEMENTACE
@@ -112,7 +112,12 @@ Zdroje:
 https://bootstrap-vue.org/docs/components/layout
 https://stackoverflow.com/questions/58241604/how-do-you-type-hint-vue-props-with-typescript-interfaces
 
-15:23 13.03.2025 vytvořil jsem UserView komponentu, kterou využívám na HomeView při vyhledání uživatele a v HistoryView při kliknutí na uživatele.
+15:23 13.03.2025 vytvořil jsem UserView komponentu, kterou využívám na HomeView při vyhledání uživatele a v HistoryView při kliknutí na uživatele. Proveden commit
+
+15:52 13.03.2025 Nejspíš vytvořím jednoduchý E2E test pro ověření zobrazení uživatele a uložení do historie. Použiju Cypress, protože s ním mám už pár zkušeností.
+
+
+
 
 
 

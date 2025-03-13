@@ -40,7 +40,7 @@ const displayedRepositories = computed(() => {
       <p>back</p>
     </v-btn>
     <v-col v-if="user">
-      <p class="text-h3 text-center">{{ user.username }}</p>
+      <p class="text-h3 text-center" data-cy="username">{{ user.username }}</p>
       <v-img
         :src="user.image_url"
         alt="user image"
@@ -55,6 +55,7 @@ const displayedRepositories = computed(() => {
           cols="12"
           md="6"
           class="d-flex justify-center align-center"
+          data-cy="repo"
         >
           <DialogComponent
             :name="repo.name"
