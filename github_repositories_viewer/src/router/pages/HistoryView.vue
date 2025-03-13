@@ -62,6 +62,9 @@ function removeUser(user: User) {
     </v-col>
     <v-col v-else>
       <v-row>
+        <v-col v-if="users.length == 0">
+          <p class="text-h3 text-center">No history yet</p>
+        </v-col>
         <v-col class="pa-4" cols="6" v-for="user in displayedUsers" :key="user.username" md="3">
           <p class="text-center text-h5">{{ user.username }}</p>
           <!-- It looks like the images are being cached, so no need for this functionality -->
@@ -85,14 +88,13 @@ function removeUser(user: User) {
       <v-spacer />
       <v-row class="justify-center">
         <Paginate
-          v-if="users.length > 0"
+          v-if="users.length > displayPerPage"
           class="pt-4"
           v-model="currentPage"
           :max-pages-shown="5"
           :items-per-page="displayPerPage"
           :total-items="itemCount"
         />
-        <p v-else class="text-h3">No history yet</p>
       </v-row>
     </v-col>
   </v-container>

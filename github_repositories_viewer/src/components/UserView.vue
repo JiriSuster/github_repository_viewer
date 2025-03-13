@@ -73,6 +73,7 @@ const displayedRepositories = computed(() => {
       </v-row>
       <v-row class="align-center justify-center">
         <Paginate
+          v-if="user.repositories.length > displayPerPage"
           v-model="currentPage"
           :max-pages-shown="5"
           :items-per-page="displayPerPage"
