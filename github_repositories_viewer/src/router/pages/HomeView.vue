@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useGithubStore } from '@/Services/GithubService.ts'
 import { computed, ref } from 'vue'
 import type { User } from '@/types/user.ts'
 import { NoRepositories } from '@/errors/NoRepositories.ts'
@@ -9,17 +8,21 @@ import Paginate from '@/components/Paginate-component.vue'
 import DialogComponent from '@/components/Dialog-component.vue'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
+import { useUserStore } from '@/stores/UserStore.ts'
+import { useGithubStore } from '@/services/GithubService.ts'
 
 const user = ref<User>()
-const store = useGithubStore()
-const searchText = ref('')
+const githubStore = useGithubStore()
+const userStore = useUserStore()
 
+const searchText = ref('')
 const showSnackBar = ref(false)
 const snackBarText = ref('')
 
 const isSearchDisabled = computed(() => {
   return usernameRules.some((rule) => rule(searchText.value) != true)
 })
+
 
 const currentPage = ref(1)
 const displayPerPage = 4
@@ -43,7 +46,8 @@ async function fetchUser() {
   isLoading.value = true
   currentPage.value = 1
   try {
-    user.value = await store.fetchUser(searchText.value)
+    user.value = await githubStore.fetchUser(searchText.value)
+    userStore.saveUser(user.value)
     itemCount.value = user.value.repositories.length
     isLoading.value = false
   } catch (err) {
@@ -67,9 +71,7 @@ async function fetchUser() {
 <template>
   <v-container max-width="60em">
     <Loading :active="isLoading" />
-    <v-row class="justify-center align-center">
-      <v-col cols="12" md="8">
-        <v-row class="align-center">
+        <v-row class="align-center d-flex">
           <v-text-field
             class="pt-5"
             v-model="searchText"
@@ -83,11 +85,9 @@ async function fetchUser() {
             class="text-humanit_main"
             @click="fetchUser()"
             :disabled="isSearchDisabled"
-            >Search</v-btn
+          >Search</v-btn
           >
         </v-row>
-      </v-col>
-    </v-row>
 
     <v-col v-if="user">
       <p class="text-h3 text-center">{{ user.username }}</p>
@@ -95,11 +95,17 @@ async function fetchUser() {
         :src="user.image_url"
         alt="user image"
         @click="redirectTo(user.url)"
-        class="cursor-pointer mx-auto"
-        width="20em"
+        class="cursor-pointer mx-auto pb-10"
+        width="25em"
       />
-      <v-row>
-        <v-col v-for="repo in displayedRepositories" :key="repo.name" cols="12" md="6">
+      <v-row class=" align-center">
+        <v-col
+          v-for="repo in displayedRepositories"
+          :key="repo.name"
+          cols="12"
+          md="6"
+          class="d-flex justify-center align-center"
+        >
           <DialogComponent
             :name="repo.name"
             :description="repo.description"

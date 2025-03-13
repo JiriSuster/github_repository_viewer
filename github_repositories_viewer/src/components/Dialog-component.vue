@@ -17,7 +17,6 @@ defineProps({
       <!--        :text="name"-->
       <!--        variant="flat"-->
       <!--      ></v-btn>-->
-      <v-col>
         <v-card
           max-width="25em"
           max-height="13em"
@@ -27,7 +26,6 @@ defineProps({
           :title="name"
           :text="description ? description : 'No description :('"
         />
-      </v-col>
     </template>
 
     <template v-slot:default="{ isActive }">

@@ -90,3 +90,22 @@ https://vuejs.org/guide/essentials/event-handling
 zdroj: https://www.npmjs.com/package/vue-loading-overlay
 
 18:15 12.03.2025 tak animace je úspěšně implementována. Sice když je response po nějakou dobu cachována, tak jen rychle problikne, ale to už nebudu řešit. Stav isLoading se nastavuje na true při začátku requestu a na false na jeho konci. Animace se ukončí i když dojde k catchnutí exception. Proveden commit
+
+18:42 12.03.2025 začínám přemýšlet nad tím, jak sprváným způsobem provést ukládání do localStorage. Nejspíš pomoci JSON.stringify uložím celého Usera i s repozitáři. 
+Jelikož tato funkcionalita bude potřebná na obou stránkách (home, history), tak tuto funkcionalitu zaobalím do pinia store. Budou zde metody na uložení jednotlivce(home view), smazání jednotlivce a přečtení všech(history view). Také nejspíše podle jména uživatele budu zamezovat duplicitám. Jméno by v tomto případě mělo sloužit jako unikátní identifikátor, protože může být pouze 1 uživatel s daným jménem.
+
+19:11 12.03.2025 Ukládání funguje. Původně jsem chtěl pouze naházet usery do localstorage a pak ji jen celou přečíst pro získání všech uživatelů. To ale nepůjde, protože už tam jsou uložena nějaká data od frameworku, takže pro odlišení ke klíči přidám prefix 'user_'
+
+20:24 12.03.2025
+https://stackoverflow.com/questions/64617355/javascript-fetch-inside-a-map
+
+10:46 13.03.2025 pomoci <template v-slot:error> se snažím zobrazit placeholder obrázku, když nebude připojení k dispozici. Když jsem hledal co využít pro zjištění, jestli má prohlížeč přístup k internetu, tak jsem narazil na navigator.isOnline. To ale nemusí vždy fugovat spráně, protože to spíše ukazuje připojení k síti, které už ale může být bez internetu. A taky to může být ovlivněno třeba VPNkou... proto použiju package vue-internet-checker
+
+11:08 13.03.2025 tak tuto package nevyuzijji, portoze je nejspise udelana a starsi verzi vue. Zkusil jsem přidat eventlistenery na online a offline, ale ty se řídí taky pomocí navigator.isOnline... takže zkusím využít package npm install is-online.
+
+11:15 13.03.2025 teď jsem si uvědomil, že jsem mohl vlastně celou dobu ukládat do localstorage tím způsobem, že by byl celý seznam uživatelů uložen pod jedním klíčem... ale to by mohlo znamenat vyšší režii při odstranění a přidání uživatelů, protože by se musel parsovat json se všemi uživately.
+
+12:31 13.03.2025 celkem dlouho jsem si hrál s responzivitou, aby byl o zmenšení stránky co nejplynulejší a aby docházelo ke správnému, hezkému zalamování a centrování repozitářů. Commituji.
+
+
+
