@@ -107,5 +107,12 @@ https://stackoverflow.com/questions/64617355/javascript-fetch-inside-a-map
 
 12:31 13.03.2025 celkem dlouho jsem si hrál s responzivitou, aby byl o zmenšení stránky co nejplynulejší a aby docházelo ke správnému, hezkému zalamování a centrování repozitářů. Commituji.
 
+13:49 13.03.2025 v history view bych chtěl zobrazit míň prvků, když je view zobrazen na mobilu. Ideálně 4, ať není potřeba scrollovat. Našel jsem si od kolika pixelů je šířka považována za md (≥768px), takže toto využiji při čtení screen.width, abych byl konzistentní.
+Zdroje: 
+https://bootstrap-vue.org/docs/components/layout
+https://stackoverflow.com/questions/58241604/how-do-you-type-hint-vue-props-with-typescript-interfaces
+
+15:23 13.03.2025 vytvořil jsem UserView komponentu, kterou využívám na HomeView při vyhledání uživatele a v HistoryView při kliknutí na uživatele.
+
 
 

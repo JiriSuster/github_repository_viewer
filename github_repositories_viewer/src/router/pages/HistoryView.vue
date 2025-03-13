@@ -2,16 +2,16 @@
 import { computed, onMounted, ref } from 'vue'
 import type { User } from '@/types/user.ts'
 import { useUserStore } from '@/stores/UserStore.ts'
-import isOnline from 'is-online';
+import isOnline from 'is-online'
 import Paginate from '@/components/Paginate-component.vue'
-
-
+import UserView from '@/components/UserView.vue'
 
 const users = ref<User[]>([])
+const selectedUser = ref<User>()
 const userStore = useUserStore()
 
 const currentPage = ref(1)
-const displayPerPage = 8
+const displayPerPage = screen.width >= 768 ? 8 : 4
 const itemCount = ref(0)
 
 const displayedUsers = computed(() => {
@@ -23,55 +23,54 @@ const displayedUsers = computed(() => {
   )
 })
 
-
-onMounted( ()=>{
+onMounted(() => {
   users.value = userStore.getAllUsers()
   itemCount.value = users.value.length
+  currentPage.value = 1
 })
 
-function redirectTo(url: string) {
-  window.location.href = url
+function selectUser(user: User) {
+  selectedUser.value = user
 }
-
-
 </script>
 
 <template>
   <v-container max-width="60em">
-    <v-row>
-      <v-col class="pa-4" cols="3" v-for="user in displayedUsers" :key="user.username">
-        <p class="text-center text-h5">{{user.username}}</p>
-        <v-img
-          v-if="isOnline"
-          :src="user.image_url"
-          alt="user image"
-          @click="redirectTo(user.url)"
-          class="cursor-pointer mx-auto"
-          width="100%"
-        >
-          <template v-slot:error>
-            <v-img src="./placeholder.png"/>
-          </template>
-        </v-img>
-        <v-img
-          v-else
-          src="./placeholder.png"
+    <v-col v-if="selectedUser">
+      <UserView :user="selectedUser" :show-arrow-back="true" @return="selectedUser = undefined" />
+    </v-col>
+    <v-col v-else>
+      <v-row>
+        <v-col class="pa-4" cols="6" v-for="user in displayedUsers" :key="user.username" md="3">
+          <p class="text-center text-h5">{{ user.username }}</p>
+          <v-img
+            v-if="isOnline"
+            :src="user.image_url"
+            alt="user image"
+            @click="selectUser(user)"
+            class="cursor-pointer mx-auto"
+            min-width="5em"
+            width="100%"
+          >
+            <template v-slot:error>
+              <v-img src="./placeholder.png" />
+            </template>
+          </v-img>
+          <v-img v-else src="./placeholder.png" />
+        </v-col>
+      </v-row>
+      <v-spacer />
+      <v-row class="justify-center">
+        <Paginate
+          class="pt-4"
+          v-model="currentPage"
+          :max-pages-shown="5"
+          :items-per-page="displayPerPage"
+          :total-items="itemCount"
         />
-      </v-col>
-    </v-row>
-    <v-spacer/>
-    <v-row class="justify-center">
-    <Paginate
-      class="pt-4"
-      v-model="currentPage"
-      :max-pages-shown="5"
-      :items-per-page="displayPerPage"
-      :total-items="itemCount"
-    />
-    </v-row>
+      </v-row>
+    </v-col>
   </v-container>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -3,7 +3,6 @@ import type { Repository, User } from '@/types/user.ts'
 import { useGithubStore } from '@/services/GithubService.ts'
 import { computed } from 'vue'
 
-
 export const useUserStore = defineStore('users', () => {
   const githubStore = useGithubStore()
 
@@ -40,13 +39,11 @@ export const useUserStore = defineStore('users', () => {
     }
   }
 
-  function getRepositoriesForPage(user: User, currentPage: number, displayPerPage: number){
-      return (
-        user?.repositories.slice(
-          (currentPage - 1) * displayPerPage,
-          currentPage * displayPerPage,
-        ) || []
-      )
+  function getRepositoriesForPage(user: User, currentPage: number, displayPerPage: number) {
+    return (
+      user?.repositories.slice((currentPage - 1) * displayPerPage, currentPage * displayPerPage) ||
+      []
+    )
   }
 
   return { saveUser, removeUser, getAllUsers, refetchAllUsers, getRepositoriesForPage }

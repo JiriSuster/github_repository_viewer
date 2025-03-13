@@ -6,15 +6,18 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import viteVuetify from 'vite-plugin-vuetify'
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-    viteVuetify()
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+export default defineConfig(({ command }) => {
+  return {
+    base: command === 'build' ? '/xsuster/github/' : '/',
+    plugins: [
+      vue(),
+      vueDevTools(),
+      viteVuetify(),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
     },
-  },
+  }
 })
