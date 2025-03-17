@@ -27,6 +27,7 @@ const isLoading = ref(false)
 async function fetchUser() {
   isLoading.value = true
   try {
+    user.value = undefined
     user.value = await githubStore.fetchUser(searchText.value)
     userStore.saveUser(user.value)
     isLoading.value = false
